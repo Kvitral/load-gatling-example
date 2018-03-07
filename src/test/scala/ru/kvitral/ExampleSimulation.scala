@@ -15,7 +15,7 @@ class ExampleSimulation extends Simulation {
 
   val exampleScn =
     scenario("exampleScenario")
-      .exec(session => session.set("rndTicket", randomizeTicket))
+      .exec{session => session.set("rndTicket", randomizeTicket)}
       .exec(
         http("ping")
           .get("ping")
@@ -30,6 +30,6 @@ class ExampleSimulation extends Simulation {
       )
 
 
-  setUp(exampleScn.inject(rampUsers(100) over (30 seconds))).protocols(httpConf)
+  setUp(exampleScn.inject(rampUsers(150) over (30 seconds))).protocols(httpConf)
 
 }
